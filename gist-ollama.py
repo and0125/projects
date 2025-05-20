@@ -1,12 +1,12 @@
 """
-Simple example of using Anthropic's Claude 3 with LangChain
+Simple example of using Ollama 3.2 with LangChain
 """
-
 
 import os
 from dotenv import load_dotenv
 from langchain_core.prompts import PromptTemplate
 from langchain_anthropic import ChatAnthropic
+from langchain_ollama import ChatOllama
 
 # Load environment variables from .env file
 load_dotenv()
@@ -27,9 +27,7 @@ summary_prompt = PromptTemplate(
     template=summary_template,
 )
 
-llm = ChatAnthropic(temperature=0.0,
-                    model="claude-3-7-sonnet-20250219",
-                    anthropic_api_key=os.environ.get("ANTHROPIC_API_KEY"))
+llm = ChatOllama(model="llama3.2")
 
 chain = summary_prompt | llm
 
